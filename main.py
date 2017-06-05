@@ -134,8 +134,9 @@ class LabelTool():
         # get image list
         self.imageDir = os.path.join(r'./Images', '%03d' %(self.category))
         self.imageList = glob.glob(os.path.join(self.imageDir, '*.jpg'))
+        self.imageList.sort()  # By Tomonori12
         if len(self.imageList) == 0:
-            print('No .JPEG images found in the specified dir!')
+            print('No .JPEG images found in the specified dir!')  # By Tomonori12
             return
 
         # default to the 1st image in the collection
@@ -166,7 +167,7 @@ class LabelTool():
             self.egLabels[i].config(image = self.egList[-1], width = SIZE[0], height = SIZE[1])
 
         self.loadImage()
-        print('%d images loaded from %s' %(self.total, s))
+        print('%d images loaded from %s' %(self.total, s))  # By Tomonori12
 
     def loadImage(self):
         # load image
@@ -190,7 +191,7 @@ class LabelTool():
                         bbox_cnt = int(line.strip())
                         continue
                     tmp = [int(t.strip()) for t in line.split()]
-##                    print(tmp)
+##                    print(tmp)  # By Tomonori12
                     self.bboxList.append(tuple(tmp))
                     tmpId = self.mainPanel.create_rectangle(tmp[0], tmp[1], \
                                                             tmp[2], tmp[3], \
@@ -205,7 +206,7 @@ class LabelTool():
             f.write('%d\n' %len(self.bboxList))
             for bbox in self.bboxList:
                 f.write(' '.join(map(str, bbox)) + '\n')
-        print('Image No. %d saved' %(self.cur))
+        print('Image No. %d saved' %(self.cur))  # By Tomonori12
 
 
     def mouseClick(self, event):
